@@ -1,6 +1,8 @@
 <?php
-include 'class/database.php';
-$db = new Database('todo_project');
+require_once( 'model/model.database.php' );
+require_once( 'model/model.task.php' );
+require_once( 'script/function.php' );
+$db = new Database( 'todo_project' );
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,22 +22,7 @@ $db = new Database('todo_project');
 		</header>
 		<main class="ui container">
 			<div class="ui segment">
-				<?php
-				$uri = $_SERVER['REQUEST_URI'];
-				if( $uri !== "/" )
-				{
-					$uri = substr( $_SERVER['REQUEST_URI'], 1 );
-					if( strpos( $uri, "?" ) !== false )
-						$uri = substr( $uri, 0, strpos( $uri, "?" ) );
-
-					$page = "pages/".$uri.".php";
-					if( !file_exists( $page ) )
-						$page = "pages/browse.php";
-				}
-				else $page = "pages/browse.php";
-
-				require $page;
-				?>
+				<?php require_once( getRoute() ); ?>
 			</div>
 		</main>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
