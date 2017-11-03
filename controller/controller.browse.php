@@ -14,13 +14,14 @@ function getTasks()
 		else if( $result->priority == 3 )
 			$priority = 'Haute';
 
-		echo'<tr onclick="location.href=\'read?id='.$result->taskid.'\'" style="cursor: pointer;">';
-			echo'<td><div class="ui ribbon label purple">'.$result->taskid.'</div></td>';
-			echo'<td>'.$result->tasklabel.'</td>';
-			echo'<td>'.$priority.'</td>';
-			echo'<td><a href="/edit?id='.$result->taskid.'">Éditer</a></td>';
-			echo'<td><a href="/delete?id='.$result->taskid.'">Supprimer</a></td>';
-		echo'</tr>';
+		echo'
+		<tr onclick="location.href=\'read?id='.$result->taskid.'\'" style="cursor: pointer;">
+			<td><div class="ui ribbon label purple">'.$result->taskid.'</div></td>
+			<td>'.$result->tasklabel.'</td>
+			<td>'.$priority.'</td>
+			<td><a href="/edit?id='.$result->taskid.'">Éditer</a></td>
+			<td><a href="/delete?id='.$result->taskid.'">Supprimer</a></td>
+		</tr>';
 	}
 }
 

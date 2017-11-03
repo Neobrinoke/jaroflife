@@ -30,9 +30,9 @@ function getRoute()
 
 		$page = "controller/controller.".$uri.".php";
 		if( !file_exists( $page ) )
-			$page = "view/view.browse.php";
+			$page = "controller/controller.browse.php";
 	}
-	else $page = "view/view.browse.php";
+	else $page = "controller/controller.browse.php";
 
 	return $page;
 }
