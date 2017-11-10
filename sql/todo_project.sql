@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 02 Novembre 2017 à 10:12
--- Version du serveur :  5.7.19-0ubuntu0.16.04.1
+-- Généré le :  Mar 07 Novembre 2017 à 16:40
+-- Version du serveur :  5.7.20-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -30,17 +30,9 @@ CREATE TABLE `task` (
   `taskid` bigint(20) NOT NULL,
   `tasklabel` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `priority` int(11) NOT NULL
+  `priority` int(11) NOT NULL,
+  `authorId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `task`
---
-
-INSERT INTO `task` (`taskid`, `tasklabel`, `description`, `priority`) VALUES
-(5, 'test', 'test', 3),
-(6, 'test', 'test', 2),
-(7, 'test', 'test', 3);
 
 -- --------------------------------------------------------
 
@@ -51,7 +43,9 @@ INSERT INTO `task` (`taskid`, `tasklabel`, `description`, `priority`) VALUES
 CREATE TABLE `user` (
   `userid` bigint(20) NOT NULL,
   `login` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -78,12 +72,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `task`
 --
 ALTER TABLE `task`
-  MODIFY `taskid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `taskid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userid` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `userid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

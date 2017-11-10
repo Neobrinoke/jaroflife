@@ -7,20 +7,24 @@ class Task
 		$this->db_info = $db;
 	}
 
-	public function addTask( $name, $priority, $description ) {
-		$this->db_info->execute( "INSERT INTO task (tasklabel, priority, description)VALUE(?, ?, ?)", [$name, $priority, $description] );
+	public function addTask( $name, $priority, $description, $userId ) {
+		return $this->db_info->execute( "INSERT INTO task ( tasklabel, priority, description, authorId ) VALUES ( ?, ?, ?, ? )", [$name, $priority, $description, $userId] );
 	}
 
-	public function getTasks() {
-		return $this->db_info->query( "SELECT * FROM task ORDER BY priority DESC" );
+	public function getTasks( $userId ) {
+		return $this->db_info->query( "SELECT * FROM task WHERE authorId = ? ORDER BY priority DESC", [$userId] );
 	}
 
-	public function getTaskById( $id ) {
-		return $this->db_info->query( "SELECT * FROM task WHERE taskid = ?", [$id], true );
+	public function getTaskById( $userId, $id ) {
+		return $this->db_info->query( "SELECT * FROM task WHERE authorId = ? AND taskid = ?", [$userId, $id], true );
 	}
 
-	public function updateTaskById( $name, $priority, $description, $id ) {
-		$this->db_info->execute( "UPDATE task SET tasklabel = ?, priority = ?, description = ? WHERE taskid = ?", [$name, $priority, $description, $id] );		
+	public function updateTaskById( $userId, $name, $priority, $description, $id ) {
+		return $this->db_info->execute( "UPDATE task SET tasklabel = ?, priority = ?, description = ? WHERE authorId = ? AND taskid = ?", [$name, $priority, $description, $userId, $id] );		
+	}
+
+	public function removeTaskById( $userId, $id ) {
+		return $this->db_info->execute( "DELETE FROM task WHERE authorId = ? AND taskid = ?", [$userId, $id] );
 	}
 }
 ?>
