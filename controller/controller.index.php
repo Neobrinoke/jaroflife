@@ -14,8 +14,7 @@ function getNavBar()
 	if( isset( $_SESSION['userId'] ) )
 	{
 		echo '
-		<a href="/browse" class="ui item">Afficher la liste</a>
-		<a href="/add" class="ui item">Ajouter une tâche</a>
+		<a href="/browse" class="ui item">Afficher mes listes</a>
 		<div class="right menu">
 			<a href="/disconnect" class="ui item">Déconnexion</a>
 		</div>';

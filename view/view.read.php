@@ -1,5 +1,8 @@
 <div class="ui attached message">
-    <h1 class="header">Tâche [<?= $result->tasklabel ?>]</h1>
+    <h1 class="header">
+		<span>Tâche [<?= $result->tasklabel ?>]</span>
+		<a class="ui right floated label" href="/edit?id=<?= $result->taskid ?>">Modifier</a>
+	</h1>
 </div>
 <div class="ui attached fluid segment">
 	<div class="ui items">

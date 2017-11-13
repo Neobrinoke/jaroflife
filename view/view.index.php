@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="/style/semantic.css">
 	</head>
 	<body onload="sendActive()">
-		<header class="ui attached stackable menu" style="margin-bottom: 25px;">
+		<header class="ui attached stackable menu inverted" style="margin-bottom: 25px;">
 			<div class="ui container">
 				<?= getNavBar() ?>
 			</div>
