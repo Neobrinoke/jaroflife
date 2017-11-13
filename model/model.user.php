@@ -12,7 +12,7 @@ class User
 	}
 
 	public function getUserById( $id )  {
-		return $this->db_info->query( 'SELECT * FROM user WHERE id = ?', [$id], true );
+		return $this->db_info->query( 'SELECT * FROM user WHERE userid = ?', [$id], true );
 	}
 	
 	public function getUserByEmail( $email )  {

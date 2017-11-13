@@ -15,6 +15,7 @@ function getNavBar()
 	{
 		echo '
 		<a href="/browse" class="ui item">Afficher mes listes</a>
+		<a href="/create-todo" class="ui item">Crée une liste</a>
 		<div class="right menu">
 			<a href="/disconnect" class="ui item">Déconnexion</a>
 		</div>';

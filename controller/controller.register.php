@@ -1,7 +1,8 @@
 <?php
+require_once( 'model/model.user.php' );
+
 if( isset( $_POST['sendRegister'] ) )
 {
-	require_once( 'model/model.user.php' );
 	$user = new User( $db );
 	
 	if( isset( $_POST['username'], $_POST['login'], $_POST['email'], $_POST['emailconf'], $_POST['password'], $_POST['passwordconf'] ) )

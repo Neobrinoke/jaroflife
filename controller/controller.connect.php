@@ -1,9 +1,8 @@
 <?php
+require_once( 'model/model.user.php' );
+
 if( isset( $_POST['sendConnect'] ) )
 {
-	require_once( 'model/model.user.php' );
-	$user = new User( $db );
-
 	$account = null;
 	if( isset( $_POST['login'], $_POST['password'] ) )
 	{
@@ -12,6 +11,7 @@ if( isset( $_POST['sendConnect'] ) )
 		
 		if( $login && $password )
 		{
+			$user = new User( $db );
 			$account = $user->getUserByEmailOrLogin( $login );
 
 			if( !$account || $password !== $account->password ) {
@@ -22,12 +22,12 @@ if( isset( $_POST['sendConnect'] ) )
 	}
 	else $Error .= " - Merci de tous compléter<br>";
 
-	if( isset( $Error ) ) {
-		sendMessage( $Error, 'error' );
-	} else {
+	if( !isset( $Error ) )
+	{
 		$_SESSION['userId'] = $account->userid;
 		header( 'Location: /' );
 	}
+	else sendMessage( $Error, 'error' );
 }
 
 require_once( 'view/view.connect.php' );
