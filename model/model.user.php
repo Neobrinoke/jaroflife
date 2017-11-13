@@ -7,24 +7,24 @@ class User
 		$this->db_info = $db;
 	}
 
-	public function addUser( $username, $login, $email, $password ) {
-		$this->db_info->execute( 'INSERT INTO user ( name, login, email, password ) VALUES ( ?, ?, ?, ? )', [$username, $login, $email, $password] );
-	}
-
-	public function getUserById( $id )  {
+	public function findById( $id )  {
 		return $this->db_info->query( 'SELECT * FROM user WHERE userid = ?', [$id], true );
 	}
 	
-	public function getUserByEmail( $email )  {
+	public function findByEmail( $email )  {
 		return $this->db_info->query( 'SELECT * FROM user WHERE email = ?', [$email], true );
 	}
 	
-	public function getUserByLogin( $login )  {
+	public function findByLogin( $login )  {
 		return $this->db_info->query( 'SELECT * FROM user WHERE login = ?', [$login], true );
 	}
 
-	public function getUserByEmailOrLogin( $login ) {
+	public function findByEmailOrLogin( $login ) {
 		return $this->db_info->query( 'SELECT * FROM user WHERE email = ? OR login = ?', [$login, $login], true );
+	}
+	
+	public function create( $username, $login, $email, $password ) {
+		$this->db_info->execute( 'INSERT INTO user ( name, login, email, password ) VALUES ( ?, ?, ?, ? )', [$username, $login, $email, $password] );
 	}
 }
 ?>

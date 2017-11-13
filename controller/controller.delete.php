@@ -2,7 +2,7 @@
 require_once( 'model/model.task.php' );
 require_once( 'model/model.todo.php' );
 
-if( isset( $_SESSION['userId'] ) ) {
+if( !isset( $_SESSION['userId'] ) ) {
 	header( 'Location: /connect' );
 }
 
@@ -10,13 +10,13 @@ if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 {
 	$task = new Task( $db );
 	$todo = new Todo( $db );
-	$result = $task->getTaskById( $_GET['id'] );
+	$result = $task->findById( $_GET['id'] );
 	if( $result )
 	{
-		if( $todo->getTodoByIdAndUserId( $result->todo_id, $_SESSION['userId'] ) )
+		if( $todo->findByIdAndUserId( $result->todo_id, $_SESSION['userId'] ) )
 		{
-			if( $task->removeTaskById( $_GET['id'] ) ) {
-				sendMessage( 'La tâche à bien été supprimé', 'valid' );
+			if( $task->remove( $_GET['id'] ) ) {
+				header( 'Location: /browse' );
 			} else {
 				sendMessage( 'Une erreur s\'est produite', 'error' );
 			}

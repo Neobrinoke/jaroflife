@@ -23,6 +23,6 @@
 			<label>Text</label>
 			<textarea name="description" id="description"><?= $result->description ?></textarea>
 		</div>
-		<input class="ui submit button" type="submit" value="Envoyer" name="submit" id="submit">
+		<input class="ui submit button blue" type="submit" value="Envoyer" name="submit" id="submit">
 	</form>
 </div>

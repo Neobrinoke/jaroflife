@@ -12,7 +12,7 @@ if( isset( $_POST['sendConnect'] ) )
 		if( $login && $password )
 		{
 			$user = new User( $db );
-			$account = $user->getUserByEmailOrLogin( $login );
+			$account = $user->findByEmailOrLogin( $login );
 
 			if( !$account || $password !== $account->password ) {
 				$Error .= " - Utilisateur introuvable";

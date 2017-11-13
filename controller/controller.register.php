@@ -4,7 +4,8 @@ require_once( 'model/model.user.php' );
 if( isset( $_POST['sendRegister'] ) )
 {
 	$user = new User( $db );
-	
+	$Error = "";
+
 	if( isset( $_POST['username'], $_POST['login'], $_POST['email'], $_POST['emailconf'], $_POST['password'], $_POST['passwordconf'] ) )
 	{
 		$username = htmlspecialchars( $_POST['username'] );
@@ -16,8 +17,8 @@ if( isset( $_POST['sendRegister'] ) )
 
 		if( $username && $login && $email && $emailconf && $password && $passwordconf )
 		{
-			$isLoginUse = $user->getUserByLogin( $login );
-			$isEmailUse = $user->getUserByEmail( $email );
+			$isLoginUse = $user->findByLogin( $login );
+			$isEmailUse = $user->findByEmail( $email );
 
 			if( strlen( $login ) < 4 ) {
 				$Error .= " - L'identifiant dois avoir une longueur supérieur à 4<br>";
@@ -45,7 +46,7 @@ if( isset( $_POST['sendRegister'] ) )
 	}
 	else $Error .= " - Merci de tous compléter<br>";
 
-	if( isset( $Error ) ) {
+	if( isset( $Error ) && $Error !== "" ) {
 		sendMessage( $Error ,'error' );
 	} else {
 		$user->addUser( $username, $login, $email, $password );

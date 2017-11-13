@@ -23,6 +23,6 @@
 			<label>Text</label>
 			<textarea name="description" id="description"></textarea>
 		</div>
-		<input class="ui submit button" type="submit" value="Envoyer" name="sendAddTask">
+		<input class="ui fluid submit button blue" type="submit" value="Créer" name="sendAddTask">
 	</form>
 </div>

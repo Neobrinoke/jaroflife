@@ -11,7 +11,7 @@ if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 	$task = new Task( $db );
 	$todo = new Todo( $db );
 	
-	$result = $task->getTaskById( $_GET['id'] );
+	$result = $task->findById( $_GET['id'] );
 	if( $result )
 	{
 		if( $todo->getTodoByIdAndUserId( $result->todo_id, $_SESSION['userId'] ) )
@@ -26,7 +26,7 @@ if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 		
 					if( $name && $priority && $description )
 					{
-						$task->updateTaskById( $name, $priority, $description, $_GET['id'] );
+						$task->update( $name, $priority, $description, $_GET['id'] );
 						header( 'Location: /browse' );
 					}
 					else sendMessage( 'Merci de tous completer', 'error' );

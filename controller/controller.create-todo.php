@@ -23,7 +23,7 @@ if( isset( $_POST['createTodo'] ) )
 
 	if( !isset( $Error ) )
 	{
-		$todo->addTodo( $name, $_SESSION['userId'] );
+		$todo->create( $name, $_SESSION['userId'] );
 		header( 'Location: /browse' );
 	}
 	else sendMessage( $Error, 'error' );

@@ -15,7 +15,7 @@ function getTodos()
 {
 	global $todo;
 	
-	$resTodos = $todo->getTodosByUserId( $_SESSION['userId'] );
+	$resTodos = $todo->findByUserId( $_SESSION['userId'] );
 	$result = '';
 	foreach( $resTodos as $res )
 	{
@@ -24,7 +24,7 @@ function getTodos()
 		<div class="eight wide column">
 			<div class="ui attached message">
 				<h1 class="header">
-					<span>TDL - <?= $todo->getTodoById( $res->todo_id )->name ?></span>
+					<span>TDL - <?= $todo->findById( $res->todo_id )->name ?></span>
 					<a class="ui right floated label blue" href="/add?todoId=<?= $res->todo_id ?>">Ajouter</a>
 				</h1>
 			</div>
@@ -54,7 +54,7 @@ function getTasks( $todo_id )
 	global $task;
 	global $user;
 
-	$resTasks = $task->getTasksByTodoId( $todo_id );
+	$resTasks = $task->findByTodoId( $todo_id );
 	$result = '';
 	foreach( $resTasks as $res )
 	{
@@ -69,7 +69,7 @@ function getTasks( $todo_id )
 		<tr onclick="location.href='read?id=<?= $res->taskid ?>'" style="cursor: pointer;">
 			<td><?= $res->tasklabel ?></td>
 			<td><?= $priority ?></td>
-			<td><?= $user->getUserById( $res->authorId )->name ?></td>
+			<td><?= $user->findById( $res->authorId )->name ?></td>
 			<td><?= $res->created_at ?></td>
 			<td><a class="ui right floated label red" href="/delete?id=<?= $res->taskid ?>">Supprimer</a></td>
 		</tr>
