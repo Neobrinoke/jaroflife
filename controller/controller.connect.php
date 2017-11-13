@@ -4,6 +4,7 @@ require_once( 'model/model.user.php' );
 if( isset( $_POST['sendConnect'] ) )
 {
 	$account = null;
+	$Error = null;
 	if( isset( $_POST['login'], $_POST['password'] ) )
 	{
 		$login = htmlspecialchars( $_POST['login'] );

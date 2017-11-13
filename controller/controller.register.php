@@ -4,7 +4,7 @@ require_once( 'model/model.user.php' );
 if( isset( $_POST['sendRegister'] ) )
 {
 	$user = new User( $db );
-	$Error = "";
+	$Error = null;
 
 	if( isset( $_POST['username'], $_POST['login'], $_POST['email'], $_POST['emailconf'], $_POST['password'], $_POST['passwordconf'] ) )
 	{
@@ -46,7 +46,7 @@ if( isset( $_POST['sendRegister'] ) )
 	}
 	else $Error .= " - Merci de tous compléter<br>";
 
-	if( isset( $Error ) && $Error !== "" ) {
+	if( isset( $Error ) ) {
 		sendMessage( $Error ,'error' );
 	} else {
 		$user->addUser( $username, $login, $email, $password );
