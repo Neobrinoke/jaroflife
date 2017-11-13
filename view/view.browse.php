@@ -1,3 +1,3 @@
 <div class="ui grid">
-	<?= getTodos() ?>
+    <?= getTodos() ?>
 </div>

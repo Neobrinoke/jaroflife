@@ -46,12 +46,12 @@ if( isset( $_POST['sendRegister'] ) )
 	}
 	else $Error .= " - Merci de tous compléter<br>";
 
-	if( isset( $Error ) ) {
-		sendMessage( $Error ,'error' );
-	} else {
-		$user->addUser( $username, $login, $email, $password );
+	if( !isset( $Error ) )
+	{
+		$user->create( $username, $login, $email, $password );
 		sendMessage( 'Inscription réussi !', 'valid' );
 	}
+	else sendMessage( $Error ,'error' );
 }
 require_once( 'view/view.register.php' );
 ?>

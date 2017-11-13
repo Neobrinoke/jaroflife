@@ -14,7 +14,7 @@ if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 	$result = $task->findById( $_GET['id'] );
 	if( $result )
 	{
-		if( $todo->getTodoByIdAndUserId( $result->todo_id, $_SESSION['userId'] ) ) {
+		if( $todo->findByIdAndUserId( $result->todo_id, $_SESSION['userId'] ) ) {
 			require_once( 'view/view.read.php' );
 		} else {
 			sendMessage( "Vous n'avez pas accès à cette tâche", "error" );

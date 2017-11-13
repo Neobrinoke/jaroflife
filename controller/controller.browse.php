@@ -21,7 +21,7 @@ function getTodos()
 	{
 		ob_start();
 		?>
-		<div class="eight wide column">
+		<div class="sixteen wide column">
 			<div class="ui attached message">
 				<h1 class="header">
 					<span>TDL - <?= $todo->findById( $res->todo_id )->name ?></span>
@@ -33,6 +33,7 @@ function getTodos()
 					<thead>
 						<tr>
 							<th>Nom</th>
+							<th>Description</th>
 							<th>Priorité</th>
 							<th>Auteur</th>
 							<th>Ajouté le ...</th>
@@ -68,6 +69,7 @@ function getTasks( $todo_id )
 		?>
 		<tr onclick="location.href='read?id=<?= $res->taskid ?>'" style="cursor: pointer;">
 			<td><?= $res->tasklabel ?></td>
+			<td><?= $res->description ?></td>
 			<td><?= $priority ?></td>
 			<td><?= $user->findById( $res->authorId )->name ?></td>
 			<td><?= $res->created_at ?></td>
