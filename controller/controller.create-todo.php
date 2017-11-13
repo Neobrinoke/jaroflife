@@ -8,6 +8,7 @@ if( !isset( $_SESSION['userId'] ) ) {
 if( isset( $_POST['createTodo'] ) )
 {
 	$todo = new Todo( $db );
+	$Error = null;
 	if( isset( $_POST['name'] ) )
 	{
 		$name = htmlspecialchars( $_POST['name'] );
