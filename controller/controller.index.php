@@ -18,11 +18,13 @@ if( isset( $_SESSION['userId'] ) )
 	<a href="/list/create/" class="ui item">Crée une liste</a>
 	<div class="right menu">
 		<div class="ui dropdown icon item">
-			<span><i class="user circle outline icon"></i><?= $_SESSION['name'] ?></span>
+			<span><i class="user circle outline icon"></i><?= $_SESSION['name'] ?><i class="dropdown icon"></i></span>
 			<div class="menu">
+				<p class="item">Connecté en tant que <strong><?= $_SESSION['name'] ?></strong></p>
+				<div class="divider"></div>
 				<a href="/task/browse/" class="item"><i class="list icon"></i>Afficher mes listes</a>
 				<div class="divider"></div>
-				<a href="/user/register/" class="item"><i class="settings icon"></i>Mon compte</a>
+				<a href="/user/account/" class="item"><i class="settings icon"></i>Mon compte</a>
 				<div class="divider"></div>
 				<a href="/user/disconnect/" class="item"><i class="sign out icon"></i>Déconnexion</a>
 			</div>

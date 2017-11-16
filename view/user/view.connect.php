@@ -6,17 +6,23 @@
 		<div class="field">
 			<div class="two fields">
 				<div class="field">
-					<label>Identifiant ou Email</label>
-					<input type="text" name="login" placeholder="Identifiant ou Email">
+					<div class="ui left icon input">
+					<i class="user icon"></i>
+						<input type="text" name="login" placeholder="Identifiant ou Email">
+					</div>
 				</div>
 				<div class="field">
-					<label>Mot de passe</label>
-					<input type="password" name="password" placeholder="Mot de passe">
+					<div class="ui left icon input">
+						<i class="lock icon"></i>
+						<input type="password" name="password" placeholder="Mot de passe">
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="field">
-			<input class="ui button blue" type="submit" name="sendConnect" value="Se connecter">
+		<div class="ui buttons fluid">
+			<input class="ui button teal" type="submit" name="sendConnect" value="Se connecter">
+			<div class="or"></div>
+			<a class="ui positive button" href="/user/register/">Enregistez-vous</a>
 		</div>
 	</form>
 </div>
