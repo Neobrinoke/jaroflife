@@ -3,8 +3,10 @@ require_once( 'model/model.task.php' );
 require_once( 'model/model.todo.php' );
 
 if( !isset( $_SESSION['userId'] ) ) {
-	header( 'Location: /connect' );
+	header( 'Location: /user/connect/' );
 }
+
+$_GET['id'] = $route->params[2];
 
 if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 {
@@ -16,7 +18,7 @@ if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 		if( $todo->findByIdAndUserId( $result->todo_id, $_SESSION['userId'] ) )
 		{
 			if( $task->remove( $_GET['id'] ) ) {
-				header( 'Location: /browse' );
+				header( 'Location: /task/browse/' );
 			} else {
 				sendMessage( 'Une erreur s\'est produite', 'error' );
 			}

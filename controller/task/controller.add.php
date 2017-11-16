@@ -3,7 +3,7 @@ require_once( 'model/model.task.php' );
 require_once( 'model/model.todo.php' );
 
 if( !isset( $_SESSION['userId'] ) ) {
-	header( 'Location: /connect' );
+	header( 'Location: /user/connect/' );
 }
 
 $_GET['todoId'] = $route->params[2];
@@ -26,7 +26,7 @@ if( isset( $_GET['todoId'] ) && is_numeric( $_GET['todoId'] ) )
 				if( $name && $priority && $description )
 				{
 					if( $task->create( $name, $priority, $description, $_SESSION['userId'], $_GET['todoId'] ) ) {
-						header( 'Location: /list/browse/' );
+						header( 'Location: /task/browse/' );
 					} else {
 						sendMessage( 'Une erreur s\'est produite', 'error' );
 					}
@@ -36,7 +36,7 @@ if( isset( $_GET['todoId'] ) && is_numeric( $_GET['todoId'] ) )
 			else sendMessage( 'Merci de tous completer', 'error' );
 		}
 		
-		require_once( 'view/list/add.php' );
+		require_once( 'view/task/view.add.php' );
 	}
 	else sendMessage( 'Vous n\'avez pas accès à cette liste', 'error' );
 }

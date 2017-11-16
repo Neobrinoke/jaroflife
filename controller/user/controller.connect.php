@@ -32,5 +32,5 @@ if( isset( $_POST['sendConnect'] ) )
 	else sendMessage( $Error, 'error' );
 }
 
-require_once( 'view/view.connect.php' );
+require_once( 'view/user/view.connect.php' );
 ?>

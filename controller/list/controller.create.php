@@ -25,10 +25,10 @@ if( isset( $_POST['createTodo'] ) )
 	if( !isset( $Error ) )
 	{
 		$todo->create( $name, $_SESSION['userId'] );
-		header( 'Location: /browse' );
+		header( 'Location: /task/browse/' );
 	}
 	else sendMessage( $Error, 'error' );
 }
 
-require_once( 'view/view.create-todo.php' );
+require_once( 'view/list/view.create.php' );
 ?>

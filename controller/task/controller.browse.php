@@ -4,7 +4,7 @@ require_once( 'model/model.todo.php' );
 require_once( 'model/model.user.php' );
 
 if( !isset( $_SESSION['userId'] ) ) {
-	header( 'Location: /connect' );
+	header( 'Location: /user/connect/' );
 }
 
 $task = new Task( $db );
@@ -28,5 +28,5 @@ function getPriority( $priority )
 	}
 }
 
-require_once( 'view/list/browse.php' );
+require_once( 'view/task/view.browse.php' );
 ?>

@@ -15,16 +15,16 @@ ob_start();
 if( isset( $_SESSION['userId'] ) )
 {
 ?>
-	<a href="/create-todo" class="ui item">Crée une liste</a>
+	<a href="/list/create/" class="ui item">Crée une liste</a>
 	<div class="right menu">
 		<div class="ui dropdown icon item">
 			<span><i class="user circle outline icon"></i><?= $_SESSION['name'] ?></span>
 			<div class="menu">
-				<a href="/list/browse/" class="item"><i class="list icon"></i>Afficher mes listes</a>
+				<a href="/task/browse/" class="item"><i class="list icon"></i>Afficher mes listes</a>
 				<div class="divider"></div>
 				<a href="/user/register/" class="item"><i class="settings icon"></i>Mon compte</a>
 				<div class="divider"></div>
-				<a href="/disconnect" class="item"><i class="sign out icon"></i>Déconnexion</a>
+				<a href="/user/disconnect/" class="item"><i class="sign out icon"></i>Déconnexion</a>
 			</div>
 		</div>
 	</div>
@@ -34,12 +34,11 @@ else
 {
 ?>
 	<div class="right menu">
-		<a href="/register" class="ui item">Inscription</a>
-		<a href="/connect" class="ui item">Connexion</a>
+		<a href="/user/register/" class="ui item">Inscription</a>
+		<a href="/user/connect/" class="ui item">Connexion</a>
 	</div>
 <?php
 }
-
 $navigation = ob_get_clean();
 
 // Affichage de la vue principale

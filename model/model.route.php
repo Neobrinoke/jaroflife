@@ -5,10 +5,9 @@ class Route
 
 	public function __construct( $uri )
 	{
-		var_dump( $uri );
 		if( $uri === '/' )
 		{
-			$this->params[0] = 'list';
+			$this->params[0] = 'task';
 			$this->params[1] = 'browse';
 		}
 		else
@@ -16,13 +15,11 @@ class Route
 			$uri = substr( $uri, 1, -1 );
 			$this->params = explode( '/', $uri );
 		}
-		var_dump( $this->params );
 	}
 
 	public function getRoute()
 	{
-		$page = "controller/".$this->params[0]."/".$this->params[1].".php";
-		var_dump( $page );
+		$page = "controller/".$this->params[0]."/controller.".$this->params[1].".php";
 		if( !file_exists( $page ) )
 			$page = "view/view.error.php";
 	
