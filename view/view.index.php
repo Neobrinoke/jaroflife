@@ -7,14 +7,14 @@
 		<title>Todo-List</title>
 		<link rel="stylesheet" href="/style/semantic.css">
 	</head>
-	<body onload="sendActive()">
+	<body>
 		<header class="ui attached stackable menu inverted" style="margin-bottom: 25px;">
 			<div class="ui container">
-				<?= getNavBar() ?>
+				<?= $navigation ?>
 			</div>
 		</header>
 		<main class="ui container">
-			<?php require_once( getRoute() ); ?>
+			<?php require_once( $route->getRoute() ); ?>
 		</main>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script src="/script/semantic.js"></script>

@@ -26,6 +26,7 @@ if( isset( $_POST['sendConnect'] ) )
 	if( !isset( $Error ) )
 	{
 		$_SESSION['userId'] = $account->userid;
+		$_SESSION['name'] = $account->name;
 		header( 'Location: /' );
 	}
 	else sendMessage( $Error, 'error' );

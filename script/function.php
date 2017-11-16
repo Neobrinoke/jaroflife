@@ -18,22 +18,4 @@ function sendMessage( $message, $type )
 		</div>';
 	}
 }
-
-function getRoute()
-{
-	$uri = $_SERVER['REQUEST_URI'];
-	if( $uri !== "/" )
-	{
-		$uri = substr( $_SERVER['REQUEST_URI'], 1 );
-		if( strpos( $uri, "?" ) !== false )
-			$uri = substr( $uri, 0, strpos( $uri, "?" ) );
-
-		$page = "controller/controller.".$uri.".php";
-		if( !file_exists( $page ) )
-			$page = "view/view.error.php";
-	}
-	else $page = "controller/controller.browse.php";
-
-	return $page;
-}
 ?>

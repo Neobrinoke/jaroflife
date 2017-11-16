@@ -6,6 +6,8 @@ if( !isset( $_SESSION['userId'] ) ) {
 	header( 'Location: /connect' );
 }
 
+$_GET['id'] = $route->params[2];
+
 if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 {
 	$task = new Task( $db );
@@ -15,7 +17,7 @@ if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 	if( $result )
 	{
 		if( $todo->findByIdAndUserId( $result->todo_id, $_SESSION['userId'] ) ) {
-			require_once( 'view/view.read.php' );
+			require_once( 'view/list/read.php' );
 		} else {
 			sendMessage( "Vous n'avez pas accès à cette tâche", "error" );
 		} 

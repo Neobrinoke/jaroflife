@@ -6,6 +6,8 @@ if( !isset( $_SESSION['userId'] ) ) {
 	header( 'Location: /connect' );
 }
 
+$_GET['id'] = $route->params[2];
+
 if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 {
 	$task = new Task( $db );
@@ -26,14 +28,17 @@ if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 		
 					if( $name && $priority && $description )
 					{
-						$task->update( $name, $priority, $description, $_GET['id'] );
-						header( 'Location: /read?id='.$_GET['id'].'' );
+						if( $task->update( $name, $priority, $description, $_GET['id'] ) ) {
+							header( 'Location: /list/read/'.$_GET['id'].'/' );
+						} else {
+							sendMessage( 'Une erreur s\'est produite', 'error' );
+						}
 					}
 					else sendMessage( 'Merci de tous completer', 'error' );
 				}
 				else sendMessage( 'Merci de tous completer', 'error' );
 			}
-			require_once( 'view/view.edit.php' );
+			require_once( 'view/list/edit.php' );
 		}
 		else sendMessage( "Vous n'avez pas accès à cette tâche", "error" );
 	}
