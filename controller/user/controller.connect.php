@@ -4,7 +4,8 @@ require_once( 'model/model.user.php' );
 if( isset( $_POST['sendConnect'] ) )
 {
 	$account = null;
-	$Error = null;
+	$error = [];
+
 	if( isset( $_POST['login'], $_POST['password'] ) )
 	{
 		$login = htmlspecialchars( $_POST['login'] );
@@ -16,20 +17,20 @@ if( isset( $_POST['sendConnect'] ) )
 			$account = $user->findByEmailOrLogin( $login );
 
 			if( !$account || $password !== $account->password ) {
-				$Error .= " - Utilisateur introuvable";
+				array_push( $error, "Utilisateur introuvable" );
 			}
 		}
-		else $Error .= " - Merci de tous compléter<br>";
+		else array_push( $error, "Merci de tous compléter" );
 	}
-	else $Error .= " - Merci de tous compléter<br>";
+	else array_push( $error, "Merci de tous compléter" );
 
-	if( !isset( $Error ) )
+	if( empty( $error ) )
 	{
 		$_SESSION['userId'] = $account->userid;
 		$_SESSION['name'] = $account->name;
 		header( 'Location: /' );
 	}
-	else sendMessage( $Error, 'error' );
+	else sendMessage( $error, 'error', true );
 }
 
 require_once( 'view/user/view.connect.php' );

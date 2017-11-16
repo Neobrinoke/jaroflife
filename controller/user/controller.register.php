@@ -4,7 +4,7 @@ require_once( 'model/model.user.php' );
 if( isset( $_POST['sendRegister'] ) )
 {
 	$user = new User( $db );
-	$Error = null;
+	$error = [];
 
 	if( isset( $_POST['username'], $_POST['login'], $_POST['email'], $_POST['emailconf'], $_POST['password'], $_POST['passwordconf'] ) )
 	{
@@ -21,37 +21,40 @@ if( isset( $_POST['sendRegister'] ) )
 			$isEmailUse = $user->findByEmail( $email );
 
 			if( strlen( $login ) < 4 ) {
-				$Error .= " - L'identifiant dois avoir une longueur supérieur à 4<br>";
+				array_push( $error, "L'identifiant dois avoir une longueur supérieur à 4" );
 			}
 			if( $password !== $passwordconf ) {
-				$Error .= " - Le mot de passe n'est pas égale à celui de confirmation<br>";
+				array_push( $error, "Le mot de passe n'est pas égale à celui de confirmation" );
 			}
 			if( $email !== $emailconf ) {
-				$Error .= " - L'email n'est pas égale à celui de confirmation<br>";
+				array_push( $error, "L'email n'est pas égale à celui de confirmation" );
 			}
 			if( strlen( $password ) < 4 ) {
-				$Error .= " - Le mot de passe dois avoir une longueur supérieur à 4<br>";
+				array_push( $error, "Le mot de passe dois avoir une longueur supérieur à 4" );
 			}
 			if( !filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
-				$Error .= " - L'email possède un format incorrecte<br>";
+				array_push( $error, "L'email possède un format incorrecte" );
 			}
 			if( $isLoginUse ) {
-				$Error .= " - L'identifiant est déjà utilisé<br>";
+				array_push( $error, "L'identifiant est déjà utilisé" );
 			}
 			if( $isEmailUse ) {
-				$Error .= " - L'email est déjà utilisé<br>";
+				array_push( $error, "L'email est déjà utilisé" );
 			}
 		}
-		else $Error .= " - Merci de tous compléter<br>";
+		else array_push( $error, "Merci de tous compléter" );
 	}
-	else $Error .= " - Merci de tous compléter<br>";
+	else array_push( $error, "Merci de tous compléter" );
 
-	if( !isset( $Error ) )
+	if( empty( $error ) )
 	{
-		$user->create( $username, $login, $email, $password );
-		sendMessage( 'Inscription réussi !', 'valid' );
+		if( $user->create( $username, $login, $email, $password ) ) {
+			sendMessage( 'Inscription réussi !', 'valid' );
+		} else {
+			sendMessage( 'Une erreur s\'est produite' ,'error' );
+		}
 	}
-	else sendMessage( $Error ,'error' );
+	else sendMessage( $error ,'error', true );
 }
 require_once( 'view/user/view.register.php' );
 ?>
