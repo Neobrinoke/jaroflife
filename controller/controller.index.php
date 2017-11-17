@@ -22,7 +22,7 @@ if( isset( $_SESSION['userId'] ) )
 			<div class="menu">
 				<p class="item">Connecté en tant que <strong><?= $_SESSION['name'] ?></strong></p>
 				<div class="divider"></div>
-				<a href="/task/browse/" class="item"><i class="list icon"></i>Afficher mes listes</a>
+				<a href="/list/browse/" class="item"><i class="list icon"></i>Afficher mes listes</a>
 				<div class="divider"></div>
 				<!-- <a href="/user/account/" class="item"><i class="settings icon"></i>Mon compte</a> -->
 				<a href="#" class="item"><i class="settings icon"></i>Mon compte</a>

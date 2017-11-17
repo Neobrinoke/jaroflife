@@ -26,7 +26,7 @@ if( isset( $_GET['todoId'] ) && is_numeric( $_GET['todoId'] ) )
 				if( $name && $priority && $description )
 				{
 					if( $task->create( $name, $priority, $description, $_SESSION['userId'], $_GET['todoId'] ) ) {
-						header( 'Location: /task/browse/' );
+						header( 'Location: /task/browse/'.$_GET['todoId'].'/' );
 					} else {
 						sendMessage( 'Une erreur s\'est produite', 'error' );
 					}

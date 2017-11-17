@@ -6,6 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Todo-List</title>
 		<link rel="stylesheet" href="/style/semantic.css">
+		<link rel="stylesheet" href="/style/style.css">
 	</head>
 	<body>
 		<header class="ui attached stackable menu inverted" style="margin-bottom: 25px;">

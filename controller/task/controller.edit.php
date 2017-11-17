@@ -6,14 +6,14 @@ if( !isset( $_SESSION['userId'] ) ) {
 	header( 'Location: /user/connect/' );
 }
 
-$_GET['id'] = $route->params[2];
+$taskId = $route->params[2];
 
-if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
+if( isset( $taskId ) && is_numeric( $taskId ) )
 {
 	$task = new Task( $db );
 	$todo = new Todo( $db );
 	
-	$result = $task->findById( $_GET['id'] );
+	$result = $task->findById( $taskId );
 	if( $result )
 	{
 		if( $todo->findByIdAndUserId( $result->todo_id, $_SESSION['userId'] ) )
@@ -28,8 +28,8 @@ if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 		
 					if( $name && $priority && $description )
 					{
-						if( $task->update( $name, $priority, $description, $_GET['id'] ) ) {
-							header( 'Location: /task/read/'.$_GET['id'].'/' );
+						if( $task->update( $name, $priority, $description, $taskId ) ) {
+							header( 'Location: /task/read/'.$taskId.'/' );
 						} else {
 							sendMessage( 'Une erreur s\'est produite', 'error' );
 						}

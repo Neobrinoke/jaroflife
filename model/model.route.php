@@ -7,7 +7,7 @@ class Route
 	{
 		if( $uri === '/' )
 		{
-			$this->params[0] = 'task';
+			$this->params[0] = 'list';
 			$this->params[1] = 'browse';
 		}
 		else

@@ -7,25 +7,33 @@ class Todo
 		$this->db_info = $db;
 	}
 	
-	public function findById( $id ) {
+	public function findById( int $id ) {
 		return $this->db_info->query( 'SELECT * FROM todo_group WHERE id = ?', [$id], true );
 	}
 
-	public function findByUserId( $userId ) {
+	public function findByUserId( int $userId ) {
 		return $this->db_info->query( 'SELECT * FROM todo_group_user WHERE user_id = ?', [$userId] );
 	}
+	
+	public function findMembersById( int $todoId ) {
+		return $this->db_info->query( 'SELECT * FROM todo_group_user WHERE todo_id = ?', [$todoId] );
+	}
+	
+	public function findMembersByIdWithoutMe( int $todoId, int $userId ) {
+		return $this->db_info->query( 'SELECT * FROM todo_group_user WHERE todo_id = ? AND user_id != ?', [$todoId, $userId] );
+	}
 
-	public function findLastByUser( $userId ) {
+	public function findLastByUser( int $userId ) {
 		return $this->db_info->query( 'SELECT * FROM todo_group WHERE author_id = ? ORDER BY id DESC', [$userId], true );
 	}
 
-	public function findByIdAndUserId( $todoId, $userId ) {
+	public function findByIdAndUserId( int $todoId, int $userId ) {
 		return $this->db_info->query( 'SELECT * FROM todo_group_user WHERE todo_id = ? AND user_id = ?', [$todoId, $userId], true );
 	}
 
-	public function create( $name, $userId )
+	public function create( string $name, string $description, int $userId )
 	{
-		if( !$this->db_info->execute( 'INSERT INTO todo_group ( name, author_id ) VALUES ( ?, ? )', [$name, $userId] ) ) {
+		if( !$this->db_info->execute( 'INSERT INTO todo_group ( name, description, author_id ) VALUES ( ?, ?, ? )', [$name, $description, $userId] ) ) {
 			return false;
 		}
 
@@ -35,6 +43,19 @@ class Todo
 		} else {
 			return false;
 		}
+	}
+	
+	public function update( string $name, string $description, int $todoId ) {
+		return $this->db_info->execute( 'UPDATE todo_group SET name = ?, description = ? WHERE id = ?', [$name, $description, $todoId] );
+	}
+	
+	public function expulse( int $todoId, int $userId ) {
+		return $this->db_info->execute( 'DELETE FROM todo_group_user WHERE todo_id = ? AND user_id = ?', [$todoId, $userId] );
+	}
+	
+	public function updateUser( int $authorityId, int $todoId, int $userId ) {
+		var_dump( $authorityId, $todoId, $userId );
+		return $this->db_info->execute( 'UPDATE todo_group_user SET authority_id = ? WHERE todo_id = ? AND user_id = ?', [$authorityId, $todoId, $userId] );
 	}
 }
 ?>
