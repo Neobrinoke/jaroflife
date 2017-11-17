@@ -1,13 +1,13 @@
-<div class="ui attached message">
-	<h1 class="header">Connexion</h1>
-</div>
-<div class="ui attached fluid segment">
-	<form method="POST" class="ui form">
-		<div class="field">
-			<div class="two fields">
+<div class="ui middle aligned center aligned grid">
+	<div class="column" style="max-width: 450px;">
+		<h2 class="ui teal image header">
+			<div class="content">Connectez-vous à votre compte</div>
+		</h2>
+		<form class="ui large form" method="POST">
+			<div class="ui stacked segment">
 				<div class="field">
 					<div class="ui left icon input">
-					<i class="user icon"></i>
+						<i class="user icon"></i>
 						<input type="text" name="login" placeholder="Identifiant ou Email">
 					</div>
 				</div>
@@ -17,12 +17,9 @@
 						<input type="password" name="password" placeholder="Mot de passe">
 					</div>
 				</div>
+				<input class="ui fluid large teal submit button" type="submit" name="sendConnect" value="Se connecter">
 			</div>
-		</div>
-		<div class="ui buttons fluid">
-			<input class="ui button teal" type="submit" name="sendConnect" value="Se connecter">
-			<div class="or"></div>
-			<a class="ui positive button" href="/user/register/">Enregistez-vous</a>
-		</div>
-	</form>
+		</form>
+		<div class="ui message">Nouveau ? <a href="/user/register/">Enregistez-vous !</a></div>
+	</div>
 </div>

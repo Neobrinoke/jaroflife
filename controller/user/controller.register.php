@@ -48,6 +48,7 @@ if( isset( $_POST['sendRegister'] ) )
 
 	if( empty( $error ) )
 	{
+		var_dump( [$username, $login, $email, $password] );
 		if( $user->create( $username, $login, $email, $password ) ) {
 			sendMessage( 'Inscription réussi !', 'valid' );
 		} else {

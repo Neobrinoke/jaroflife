@@ -24,7 +24,7 @@ class User
 	}
 	
 	public function create( $username, $login, $email, $password ) {
-		$this->db_info->execute( 'INSERT INTO user ( name, login, email, password ) VALUES ( ?, ?, ?, ? )', [$username, $login, $email, $password] );
+		return $this->db_info->execute( 'INSERT INTO user ( name, login, email, password ) VALUES ( ?, ?, ?, ? )', [$username, $login, $email, $password] );
 	}
 }
 ?>
