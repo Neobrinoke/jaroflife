@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.7.5
+-- https://www.phpmyadmin.net/
 --
--- Client :  localhost
--- Généré le :  Mar 14 Novembre 2017 à 09:39
--- Version du serveur :  5.7.20-0ubuntu0.16.04.1
--- Version de PHP :  7.0.22-0ubuntu0.16.04.1
+-- Hôte : localhost
+-- Généré le :  sam. 18 nov. 2017 à 12:10
+-- Version du serveur :  5.7.19-log
+-- Version de PHP :  7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -40,31 +42,6 @@ CREATE TABLE `task` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `task`
---
-
-INSERT INTO `task` (`taskid`, `tasklabel`, `description`, `priority`, `authorId`, `todo_id`, `created_at`, `deleted_at`, `updated_at`) VALUES
-(9, 'test1', 'qsdsq', 3, 4, 1, '2017-11-13 09:00:03', '2017-11-13 11:21:43', '2017-11-13 11:21:43'),
-(11, 'test tÃ¢che', 'finir ce site TDLdsqdqs', 3, 4, 1, '2017-11-13 09:00:03', '2017-11-13 12:30:39', '2017-11-13 12:30:39'),
-(12, 'dsq', 'dsq', 1, 4, 2, '2017-11-13 09:00:03', '2017-11-13 16:25:04', '2017-11-13 16:25:04'),
-(14, 'test', 'test', 1, 5, 2, '2017-11-13 09:00:03', '2017-11-13 16:25:05', '2017-11-13 16:25:05'),
-(15, 'dqs', 'dsq', 2, 4, 1, '2017-11-13 09:00:03', '2017-11-13 16:25:01', '2017-11-13 16:25:01'),
-(17, 'test4', 'test4 desc', 3, 4, 1, '2017-11-13 09:30:03', '2017-11-13 12:35:07', '2017-11-13 12:35:07'),
-(18, 'test3', 'test445&gt;4D', 3, 4, 2, '2017-11-13 09:30:17', '2017-11-13 16:25:04', '2017-11-13 16:25:04'),
-(19, 'dsq', 'dsq', 1, 4, 1, '2017-11-13 09:31:13', '2017-11-13 16:25:01', '2017-11-13 16:25:01'),
-(20, 'qd&lt;GF', 'DQGHDFSQ', 1, 4, 2, '2017-11-13 09:31:20', '2017-11-13 16:25:05', '2017-11-13 16:25:05'),
-(21, 'sfgujd', 'fjgdhjdghj', 1, 4, 2, '2017-11-13 09:31:36', '2017-11-13 16:25:06', '2017-11-13 16:25:06'),
-(22, 'dqfgh', 'dhdsgfhdq', 1, 4, 6, '2017-11-13 10:00:58', '2017-11-13 16:25:08', '2017-11-13 16:25:08'),
-(23, 'dqsdqsdqsd', 'sqdqdqsdqsdsqdqs', 1, 5, 1, '2017-11-13 10:03:10', '2017-11-13 16:25:02', '2017-11-13 16:25:02'),
-(24, 'qdsfgqs', 'fdgqdsfgqdsf', 1, 4, 2, '2017-11-13 10:15:23', '2017-11-13 16:25:06', '2017-11-13 16:25:06'),
-(25, 'dsqdqsdqsdqsd', 'qsdqsdqsdqsdqsdqsd', 1, 4, 7, '2017-11-13 10:15:29', '2017-11-13 16:25:11', '2017-11-13 16:25:11'),
-(26, 'dsqdqsd', 'qsdqsdsq', 1, 4, 6, '2017-11-13 10:18:58', '2017-11-13 16:25:09', '2017-11-13 16:25:09'),
-(27, 'dqsdqsdqsd', 'sqdqsdqsdqs', 1, 5, 1, '2017-11-13 10:19:56', '2017-11-13 11:20:51', '2017-11-13 11:20:51'),
-(28, 'Finir ce site TDL', 'Je dois finir ce site TDL ( dsqqdsdsqdqssdqdsqdqsqds )dsqdqsdqsdsq', 3, 6, 9, '2017-11-13 13:36:26', '2017-11-13 13:38:57', '2017-11-13 13:38:57'),
-(29, 'dsqdqsdqs', 'sqdqsdqs', 2, 4, 10, '2017-11-13 13:49:07', '2017-11-13 16:25:14', '2017-11-13 16:25:14'),
-(30, 'test', 'test', 1, 5, 10, '2017-11-13 13:49:51', '2017-11-13 16:25:17', '2017-11-13 16:25:17');
-
 -- --------------------------------------------------------
 
 --
@@ -74,24 +51,11 @@ INSERT INTO `task` (`taskid`, `tasklabel`, `description`, `priority`, `authorId`
 CREATE TABLE `todo_group` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `description` varchar(512) NOT NULL,
   `author_id` bigint(20) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `todo_group`
---
-
-INSERT INTO `todo_group` (`id`, `name`, `author_id`, `created_at`, `deleted_at`) VALUES
-(1, 'Ma todo-list', 4, '2017-11-10 08:55:30', NULL),
-(2, 'ma liste', 4, '2017-11-10 09:17:33', NULL),
-(3, 'ma liste de test', 4, '2017-11-13 09:32:57', NULL),
-(5, 'Test', 4, '2017-11-13 09:55:47', NULL),
-(6, 'Test', 4, '2017-11-13 09:56:09', NULL),
-(7, 'dqsdqsdqs', 4, '2017-11-13 09:56:17', NULL),
-(8, 'dsqdqsdqs', 4, '2017-11-13 10:19:05', NULL),
-(9, 'Ma TDL', 6, '2017-11-13 13:36:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -103,23 +67,9 @@ CREATE TABLE `todo_group_user` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `todo_id` bigint(20) NOT NULL,
-  `authority_id` int(11) NOT NULL
+  `authority_id` int(11) NOT NULL,
+  `joined_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `todo_group_user`
---
-
-INSERT INTO `todo_group_user` (`id`, `user_id`, `todo_id`, `authority_id`) VALUES
-(1, 4, 1, 0),
-(2, 5, 1, 1),
-(3, 4, 2, 0),
-(4, 4, 6, 0),
-(5, 4, 7, 0),
-(6, 4, 8, 0),
-(7, 6, 9, 0),
-(8, 4, 10, 0),
-(9, 5, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -136,16 +86,17 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `user`
+-- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`userid`, `login`, `password`, `name`, `email`) VALUES
-(4, 'neobrinoke', 'a2d7953c806f11f0705dff837893b083893fbf1c', 'Alexis', 'neobrinoke@gmail.com'),
-(5, 'test', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test', 'test@test.fr'),
-(6, 'test2', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test2', 'test2@test.fr');
+INSERT INTO `user` (`userid`, `login`, `password`, `name`, `email`) VALUES(7, 'test', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test', 'test@test.fr');
+INSERT INTO `user` (`userid`, `login`, `password`, `name`, `email`) VALUES(8, 'test2', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test2', 'test2@gmail.com');
+INSERT INTO `user` (`userid`, `login`, `password`, `name`, `email`) VALUES(9, 'test3', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test3', 'test3@gmail.com');
+INSERT INTO `user` (`userid`, `login`, `password`, `name`, `email`) VALUES(10, 'test4', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test4', 'test4@gmail.com');
+INSERT INTO `user` (`userid`, `login`, `password`, `name`, `email`) VALUES(11, 'test5', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test5', 'test5@gmail.com');
 
 --
--- Index pour les tables exportées
+-- Index pour les tables déchargées
 --
 
 --
@@ -173,29 +124,34 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`userid`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
 -- AUTO_INCREMENT pour la table `task`
 --
 ALTER TABLE `task`
-  MODIFY `taskid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `taskid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
 --
 -- AUTO_INCREMENT pour la table `todo_group`
 --
 ALTER TABLE `todo_group`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
 --
 -- AUTO_INCREMENT pour la table `todo_group_user`
 --
 ALTER TABLE `todo_group_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `userid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

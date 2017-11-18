@@ -17,7 +17,9 @@
 		<main class="ui container">
 			<?php require_once( $route->getRoute() ); ?>
 		</main>
-		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="/script/tablesort.js"></script>
 		<script src="/script/semantic.js"></script>
 		<script src="/script/script.js"></script>
 	</body>

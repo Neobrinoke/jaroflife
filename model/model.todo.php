@@ -8,7 +8,7 @@ class Todo
 	}
 	
 	public function findById( int $id ) {
-		return $this->db_info->query( 'SELECT * FROM todo_group WHERE id = ?', [$id], true );
+		return $this->db_info->query( 'SELECT * FROM todo_group WHERE id = ? AND deleted_at IS NULL', [$id], true );
 	}
 
 	public function findByUserId( int $userId ) {
@@ -24,7 +24,7 @@ class Todo
 	}
 
 	public function findLastByUser( int $userId ) {
-		return $this->db_info->query( 'SELECT * FROM todo_group WHERE author_id = ? ORDER BY id DESC', [$userId], true );
+		return $this->db_info->query( 'SELECT * FROM todo_group WHERE author_id = ? AND deleted_at IS NULL ORDER BY id DESC', [$userId], true );
 	}
 
 	public function findByIdAndUserId( int $todoId, int $userId ) {
@@ -39,7 +39,7 @@ class Todo
 
 		$todo = $this->findLastByUser( $userId );
 		if( $todo ) {
-			return $this->db_info->execute( 'INSERT INTO todo_group_user ( user_id, todo_id, authority_id ) VALUES ( ?, ?, ? )', [$userId, $todo->id, 0] );
+			return $this->db_info->execute( 'INSERT INTO todo_group_user ( user_id, todo_id, authority_id ) VALUES ( ?, ?, ? )', [$userId, $todo->id, 1] );
 		} else {
 			return false;
 		}
@@ -54,8 +54,15 @@ class Todo
 	}
 	
 	public function updateUser( int $authorityId, int $todoId, int $userId ) {
-		var_dump( $authorityId, $todoId, $userId );
 		return $this->db_info->execute( 'UPDATE todo_group_user SET authority_id = ? WHERE todo_id = ? AND user_id = ?', [$authorityId, $todoId, $userId] );
+	}
+
+	public function remove( int $todoId )
+	{
+		if( !$this->db_info->execute( 'UPDATE task SET deleted_at = CURRENT_TIMESTAMP WHERE todo_id = ?', [$todoId] ) || !$this->db_info->execute( 'DELETE FROM todo_group_user WHERE todo_id = ?', [$todoId] ) ) {
+			return false;
+		}
+		return $this->db_info->execute( 'UPDATE todo_group SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?', [$todoId] );
 	}
 }
 ?>

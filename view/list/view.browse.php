@@ -21,7 +21,6 @@
 					<div class="ui cards">
 						<div class="card">
 							<div class="content">
-								<img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg">
 								<div class="header"><?= $todoInfo->name ?></div>
 								<div class="description"><?= $todoInfo->description ?></div>
 							</div>

@@ -49,4 +49,6 @@
 	}
 	else sendMessage( 'Vous êtes seul sur cette liste', 'info' );
 	?>
+	<h4 class="ui dividing header">Suppression</h4>
+	<a class="ui button red" onclick="onConfirmNotif('Voulez-vous vraiment supprimer cette liste ?\nToutes les tâches correspondante serons aussi supprimer\nL\'action est irresversible', '/list/delete/<?= $todoList->id ?>/')">Supprimer cette liste  !</a>
 </div>
