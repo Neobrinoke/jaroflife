@@ -20,9 +20,9 @@ class Route
 	public function getRoute()
 	{
 		$page = "controller/".$this->params[0]."/controller.".$this->params[1].".php";
-		if( !file_exists( $page ) )
-			$page = "view/view.error.php";
-	
+		if( !file_exists( $page ) ) {
+			header( 'Location: https://http.cat/404' );
+		}	
 		return $page;
 	}
 }
