@@ -1,7 +1,7 @@
 <div class="ui attached message">
 	<h1 class="header">
 		<span>Vos listes</span>
-		<span class="floated right"><a class="ui basic label blue" href="/list/add/">Ajouter</a></span>
+		<span><a class="ui right floated basic icon button" href="/list/add/" data-tooltip="Ajouter une liste"><i class="add icon"></i></a></span>
 	</h1>
 </div>
 <div class="ui attached fluid segment">

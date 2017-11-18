@@ -1,7 +1,7 @@
 <div class="ui attached message">
 	<h1 class="header">
 		<span>Vos tâche pour la liste [ <?= $resTodo->name ?> ]</span>
-		<span class="floated right"><a class="ui basic label blue" href="/task/add/<?= $resTodo->id ?>/">Ajouter</a></span>
+		<span><a class="ui right floated basic icon button" href="/task/add/<?= $resTodo->id ?>/" data-tooltip="Ajouter une tâche"><i class="add icon"></i></a></span>
 	</h1>
 </div>
 <div class="ui attached fluid segment">
@@ -28,7 +28,7 @@
 						<td><?= getPriority( $resTask->priority ) ?></td>
 						<td><?= $user->findById( $resTask->authorId )->name ?></td>
 						<td><?= $resTask->created_at ?></td>
-						<td><a class="ui right floated label red" href="/task/delete/<?= $resTodo->id ?>/<?= $resTask->taskid ?>/">Supprimer</a></td>
+						<td class="collapsing"><a class="ui basic icon button" href="/task/delete/<?= $resTodo->id ?>/<?= $resTask->taskid ?>/"  data-tooltip="Supprimer la tâche"><i class="trash icon"></a></td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>
