@@ -15,7 +15,7 @@ ob_start();
 if( isset( $_SESSION['userId'] ) )
 {
 ?>
-	<a href="/list/create/" class="ui item">Crée une liste</a>
+	<a href="/list/browse/" class="ui item">Afficher les listes</a>
 	<div class="right menu">
 		<div class="ui dropdown icon item">
 			<span><i class="user circle outline icon"></i><?= $_SESSION['name'] ?><i class="dropdown icon"></i></span>
