@@ -18,6 +18,14 @@ class User
 	public function findByLogin( $login )  {
 		return $this->db_info->query( 'SELECT * FROM user WHERE login = ?', [$login], true );
 	}
+	
+	public function findByName( $name )  {
+		return $this->db_info->query( 'SELECT * FROM user WHERE name = ?', [$name], true );
+	}
+	
+	public function findByNameOrEmail( $name )  {
+		return $this->db_info->query( 'SELECT * FROM user WHERE email = ? OR name = ?', [$name, $name], true );
+	}
 
 	public function findByEmailOrLogin( $login ) {
 		return $this->db_info->query( 'SELECT * FROM user WHERE email = ? OR login = ?', [$login, $login], true );

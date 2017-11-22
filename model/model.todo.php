@@ -31,6 +31,10 @@ class Todo
 		return $this->db_info->query( 'SELECT * FROM todo_group_user WHERE todo_id = ? AND user_id = ?', [$todoId, $userId], true );
 	}
 
+	public function addUser( int $userId, int $todoId, int $authorityId ) {
+		return $this->db_info->execute( 'INSERT INTO todo_group_user ( user_id, todo_id, authority_id ) VALUES ( ?, ?, ? )', [$userId, $todoId, $authorityId] );
+	}
+
 	public function create( string $name, string $description, int $userId )
 	{
 		if( !$this->db_info->execute( 'INSERT INTO todo_group ( name, description, author_id ) VALUES ( ?, ?, ? )', [$name, $description, $userId] ) ) {

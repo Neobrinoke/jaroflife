@@ -1,5 +1,8 @@
 <div class="ui attached message">
-	<h1 class="header">Détails de la liste [ <?= $todoList->name ?> ]</h1>
+	<h1 class="header">
+		<span>Détails de la liste [ <?= $todoList->name ?> ]</span>
+		<span><a class="ui right floated basic icon button" href="/list/add-user/<?= $todoId ?>/" data-tooltip="Ajouter un utilisateur"><i class="user add icon"></i></a></span>
+	</h1>
 </div>
 <div class="ui attached fluid segment">
 	<h4 class="ui dividing header">Participants</h4>
