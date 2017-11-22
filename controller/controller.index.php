@@ -15,14 +15,12 @@ ob_start();
 if( isset( $_SESSION['userId'] ) )
 {
 ?>
-	<a href="/list/browse/" class="ui item">Afficher les listes</a>
+	<a href="/list/browse/" class="ui item"><i class="list icon"></i>Afficher mes listes</a>
 	<div class="right menu">
 		<div class="ui dropdown icon item">
 			<span><i class="user circle outline icon"></i><?= $_SESSION['name'] ?><i class="dropdown icon"></i></span>
 			<div class="menu">
 				<p class="item">Connecté en tant que <strong><?= $_SESSION['name'] ?></strong></p>
-				<div class="divider"></div>
-				<a href="/list/browse/" class="item"><i class="list icon"></i>Afficher mes listes</a>
 				<div class="divider"></div>
 				<a href="/user/account/" class="item"><i class="settings icon"></i>Mon compte</a>
 				<div class="divider"></div>
