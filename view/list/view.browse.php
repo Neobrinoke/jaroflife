@@ -9,7 +9,7 @@
 	if( !empty( $resTodos ) )
 	{
 		?>
-		<div class="ui three column grid">
+		<div class="ui three column stackable grid">
 			<?php
 			foreach( $resTodos as $resTodo )
 			{
