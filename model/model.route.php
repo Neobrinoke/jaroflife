@@ -22,7 +22,7 @@ class Route
 		$page = "controller/".$this->params[0]."/controller.".$this->params[1].".php";
 		if( !file_exists( $page ) ) {
 			header( 'Location: https://http.cat/404' );
-		}	
+		}
 		return $page;
 	}
 }
