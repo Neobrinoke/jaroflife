@@ -1,63 +1,67 @@
 <?php
 require_once( 'model/model.todo.php' );
 
-$userId = $_SESSION['userId'];
-
-if( !isset( $userId ) ) {
+if( !isset( $_SESSION['userId'] ) ) {
 	header( 'Location: /user/connect/' );
 }
 
 $todo = new Todo( $db );
+
 $todoId = $route->params[2];
+$userId = $_SESSION['userId'];
 
 if( isset( $todoId ) && is_numeric( $todoId ) )
 {
-	if( $todo->findByIdAndUserId( $todoId, $userId ) )
+	if( $todo->findById( $todoId ) )
 	{
-		$result = $todo->findById( $todoId );
-		if( $result )
+		$todoMember = $todo->findByIdAndUserId( $todoId, $userId );
+		if( $todoMember )
 		{
-			if( isset( $_POST['editTodo'] ) )
+			if( $todoMember->authority_id == 1 || $todoMember->authority_id == 2 )
 			{
-				$error = [];
-				if( isset( $_POST['name'], $_POST['description'] ) )
+				if( isset( $_POST['editTodo'] ) )
 				{
-					$name = htmlspecialchars( $_POST['name'] );
-					$description = htmlspecialchars( $_POST['description'] );
-					if( $name && $description )
+					$error = [];
+					if( isset( $_POST['name'], $_POST['description'] ) )
 					{
-						if( strlen( $name ) < 4 ) {
-							array_push( $error, "Le nom dois avoir une longueur supérieur à 4" );
-						}
+						$name = htmlspecialchars( $_POST['name'] );
+						$description = htmlspecialchars( $_POST['description'] );
+						if( $name && $description )
+						{
+							if( strlen( $name ) < 4 ) {
+								array_push( $error, "Le nom dois avoir une longueur supérieur à 4" );
+							}
 
-						if( strlen( $description ) < 4 ) {
-							array_push( $error, "La description dois avoir une longueur supérieur à 4" );
-						}
+							if( strlen( $description ) < 4 ) {
+								array_push( $error, "La description dois avoir une longueur supérieur à 4" );
+							}
 
-						if( trim( $name ) == null || trim( $description ) == null ) {
-							array_push( $error, "Merci de tous compléter" );
+							if( trim( $name ) == null || trim( $description ) == null ) {
+								array_push( $error, "Merci de tous compléter" );
+							}
 						}
+						else array_push( $error, "Merci de tous compléter" );
 					}
 					else array_push( $error, "Merci de tous compléter" );
-				}
-				else array_push( $error, "Merci de tous compléter" );
 
-				if( empty( $error ) )
-				{
-					if( $todo->update( $name, $description, $todoId ) ) {
-						header( 'Location: /list/browse/' );
-					} else {
-						sendMessage( 'Une erreur s\'est produite', 'error' );
+					if( empty( $error ) )
+					{
+						if( $todo->update( $name, $description, $todoId ) ) {
+							header( 'Location: /list/browse/' );
+						} else {
+							sendMessage( 'Une erreur s\'est produite', 'error' );
+						}
 					}
+					else sendMessage( $error, 'error', true );
 				}
-				else sendMessage( $error, 'error', true );
+				
+				require_once( 'view/list/view.edit.php' );
 			}
-			
-			require_once( 'view/list/view.edit.php' );
+			else sendMessage( 'Vous n\'avez pas la permission requise pour éditer cette liste', 'error' );
 		}
-		else sendMessage( 'Aucune liste correspondante', 'error' );
+		else sendMessage( 'Vous n\'avez pas accès à cette liste', 'error' );
 	}
-	else sendMessage( 'Vous n\'avez pas accès à cette liste', 'error' );
+	else sendMessage( 'Aucune liste correspondante', 'error' );
 }
 else sendMessage( 'Aucune liste correspondante', 'error' );
 ?>

@@ -22,6 +22,8 @@ if( isset( $todoId ) && is_numeric( $todoId ) )
 			{
 				$error = [];
 				$userInfo = null;
+				$name = null;
+				$authorityId = null;
 
 				if( isset( $_POST['name'] ) )
 				{

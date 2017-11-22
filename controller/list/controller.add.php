@@ -5,10 +5,15 @@ if( !isset( $_SESSION['userId'] ) ) {
 	header( 'Location: /user/connect/' );
 }
 
+$userId = $_SESSION['userId'];
+
 if( isset( $_POST['createTodo'] ) )
 {
 	$todo = new Todo( $db );
 	$error = [];
+	$name = null;
+	$description = null;
+
 	if( isset( $_POST['name'], $_POST['description'] ) )
 	{
 		$name = htmlspecialchars( $_POST['name'] );
@@ -33,7 +38,7 @@ if( isset( $_POST['createTodo'] ) )
 
 	if( empty( $error ) )
 	{
-		if( $todo->create( $name, $description, $_SESSION['userId'] ) ) {
+		if( $todo->create( $name, $description, $userId ) ) {
 			header( 'Location: /list/browse/' );
 		} else {
 			sendMessage( 'Une erreur s\'est produite', 'error' );

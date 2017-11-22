@@ -11,6 +11,8 @@ $task = new Task( $db );
 $todo = new Todo( $db );
 $user = new User( $db );
 
+$todoId = $route->params[2];
+
 function getPriority( $priority )
 {
 	switch( $priority )
@@ -21,12 +23,12 @@ function getPriority( $priority )
 	}
 }
 
-if( isset( $route->params[2] ) && is_numeric( $route->params[2] ) )
+if( isset( $todoId ) && is_numeric( $todoId ) )
 {
-	$resTodo = $todo->findById( $route->params[2] );
+	$resTodo = $todo->findById( $todoId );
 	if( $resTodo )
 	{
-		$resTasks = $task->findByTodoId( $route->params[2] );
+		$resTasks = $task->findByTodoId( $todoId );
 		require_once( 'view/task/view.browse.php' );
 	}
 	else sendMessage( 'Aucune liste trouvée', 'error' );

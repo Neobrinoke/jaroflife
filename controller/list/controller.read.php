@@ -2,15 +2,15 @@
 require_once( 'model/model.todo.php' );
 require_once( 'model/model.user.php' );
 
-$userId = $_SESSION['userId'];
-
-if( !isset( $userId ) ) {
+if( !isset( $_SESSION['userId'] ) ) {
 	header( 'Location: /user/connect/' );
 }
 
 $todo = new Todo( $db );
 $user = new User( $db );
+
 $todoId = $route->params[2];
+$userId = $_SESSION['userId'];
 
 if( isset( $todoId ) && is_numeric( $todoId ) )
 {
@@ -54,7 +54,7 @@ if( isset( $todoId ) && is_numeric( $todoId ) )
 				$todoMembers = $todo->findMembersByIdWithoutMe( $todoId, $userId );
 				require_once( 'view/list/view.read.php' );
 			}
-			else sendMessage( 'Vous n\'avez pas la permission requise pour acceder au détails de cette liste', 'error' );
+			else sendMessage( 'Vous n\'avez pas la permission requise pour accéder au détails de cette liste', 'error' );
 		}
 		else sendMessage( 'Vous n\'avez pas accès à cette liste', 'error' );
 	}

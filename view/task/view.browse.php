@@ -23,11 +23,11 @@
 			<tbody>
 				<?php foreach( $resTasks as $resTask ): ?>
 					<tr>
-						<td onclick="location.href='/task/read/<?= $resTask->taskid ?>/'" style="cursor: pointer;"><?= $resTask->tasklabel ?></td>
-						<td onclick="location.href='/task/read/<?= $resTask->taskid ?>/'" style="cursor: pointer;"><?= $resTask->description ?></td>
-						<td onclick="location.href='/task/read/<?= $resTask->taskid ?>/'" style="cursor: pointer;"><?= getPriority( $resTask->priority ) ?></td>
-						<td onclick="location.href='/task/read/<?= $resTask->taskid ?>/'" style="cursor: pointer;"><?= $user->findById( $resTask->authorId )->name ?></td>
-						<td onclick="location.href='/task/read/<?= $resTask->taskid ?>/'" style="cursor: pointer;"><?= $resTask->created_at ?></td>
+						<td onclick="location.href='/task/read/<?= $resTodo->id ?>/<?= $resTask->taskid ?>/'" style="cursor: pointer;"><?= $resTask->tasklabel ?></td>
+						<td onclick="location.href='/task/read/<?= $resTodo->id ?>/<?= $resTask->taskid ?>/'" style="cursor: pointer;"><?= $resTask->description ?></td>
+						<td onclick="location.href='/task/read/<?= $resTodo->id ?>/<?= $resTask->taskid ?>/'" style="cursor: pointer;"><?= getPriority( $resTask->priority ) ?></td>
+						<td onclick="location.href='/task/read/<?= $resTodo->id ?>/<?= $resTask->taskid ?>/'" style="cursor: pointer;"><?= $user->findById( $resTask->authorId )->name ?></td>
+						<td onclick="location.href='/task/read/<?= $resTodo->id ?>/<?= $resTask->taskid ?>/'" style="cursor: pointer;"><?= $resTask->created_at ?></td>
 						<td class="collapsing"><a class="ui icon button red" onclick="onConfirmNotif('Voulez-vous vraiment supprimer cette tâche ?', '/task/delete/<?= $resTodo->id ?>/<?= $resTask->taskid ?>/')" data-tooltip="Supprimer la tâche"><i class="trash icon"></i></a></td>
 					</tr>
 				<?php endforeach; ?>

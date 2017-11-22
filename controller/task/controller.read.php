@@ -6,17 +6,19 @@ if( !isset( $_SESSION['userId'] ) ) {
 	header( 'Location: /user/connect/' );
 }
 
-$_GET['id'] = $route->params[2];
+$task = new Task( $db );
+$todo = new Todo( $db );
 
-if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
+$todoId = $route->params[2];
+$taskId = $route->params[3];
+$userId = $_SESSION['userId'];
+
+if( isset( $todoId, $taskId ) && is_numeric( $todoId ) && is_numeric( $taskId ) )
 {
-	$task = new Task( $db );
-	$todo = new Todo( $db );
-	
-	$result = $task->findById( $_GET['id'] );
+	$result = $task->findById( $taskId );
 	if( $result )
 	{
-		if( $todo->findByIdAndUserId( $result->todo_id, $_SESSION['userId'] ) ) {
+		if( $todo->findByIdAndUserId( $todoId, $userId ) ) {
 			require_once( 'view/task/view.read.php' );
 		} else {
 			sendMessage( "Vous n'avez pas accès à cette tâche", "error" );
@@ -24,4 +26,5 @@ if( isset( $_GET['id'] ) && is_numeric( $_GET['id'] ) )
 	}
 	else sendMessage( 'Impossible de trouvé la tâche', 'error' );
 }
+else sendMessage( 'Impossible de trouvé la tâche', 'error' );
 ?>

@@ -6,27 +6,28 @@ if( !isset( $_SESSION['userId'] ) ) {
 	header( 'Location: /user/connect/' );
 }
 
-$_GET['todoId'] = $route->params[2];
+$todo = new Todo( $db );
+$task = new Task( $db );
 
-if( isset( $_GET['todoId'] ) && is_numeric( $_GET['todoId'] ) )
+$todoId = $route->params[2];
+$userId = $_SESSION['userId'];
+
+if( isset( $todoId ) && is_numeric( $todoId ) )
 {
-	$todo = new Todo( $db );
-	if( $todo->findByIdAndUserId( $_GET['todoId'], $_SESSION['userId'] ) )
+	if( $todo->findByIdAndUserId( $todoId, $userId ) )
 	{
 		if( isset( $_POST['sendAddTask'] ) )
 		{
 			if( isset( $_POST['name'], $_POST['priority'], $_POST['description'] ) )
 			{
-				$task = new Task( $db );
-
 				$name = htmlspecialchars( $_POST['name'] );
 				$priority = htmlspecialchars( $_POST['priority'] );
 				$description = htmlspecialchars( $_POST['description'] );
 
 				if( $name && $priority && $description )
 				{
-					if( $task->create( $name, $priority, $description, $_SESSION['userId'], $_GET['todoId'] ) ) {
-						header( 'Location: /task/browse/'.$_GET['todoId'].'/' );
+					if( $task->create( $name, $priority, $description, $userId, $todoId ) ) {
+						header( 'Location: /task/browse/'.$todoId.'/' );
 					} else {
 						sendMessage( 'Une erreur s\'est produite', 'error' );
 					}
