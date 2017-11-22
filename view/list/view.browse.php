@@ -16,6 +16,9 @@
 				$todoInfo = $todo->findById( $resTodo->todo_id );
 				$membersCount = sizeof( $todo->findMembersById( $resTodo->todo_id ) );
 				$tasksCount = sizeof( $task->findByTodoId( $resTodo->todo_id ) );
+				$dateTime = new DateTime( $resTodo->joined_at );
+				$date = $dateTime->format( 'd-m-Y' );
+				$time = $dateTime->format( 'H:i' );
 				?>
 				<div class="column">
 					<div class="ui cards">
@@ -29,7 +32,7 @@
 								<span class="right floated"><i class="browser icon"></i><?= $tasksCount ?> <?= $tasksCount > 1 ? 'Tâches' : 'Tâche' ?></span>
 							</div>
 							<div class="extra content">
-								<span><i class="calendar icon"></i>Rejoins le <?= $resTodo->joined_at ?></span>
+								<span><i class="calendar icon"></i>Rejoins le <?= $date ?> à <?= $time ?></span>
 							</div>
 							<div class="extra content">
 								<div class="ui two buttons">
