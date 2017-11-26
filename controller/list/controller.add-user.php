@@ -27,8 +27,9 @@ if( isset( $todoId ) && is_numeric( $todoId ) )
 
 				if( isset( $_POST['name'] ) )
 				{
-					$name = htmlspecialchars( $_POST['name'] );
-					$authorityId = htmlspecialchars( $_POST['authority'] );
+					$name = htmlspecialchars( protect( $_POST['name'] ) );
+					$authorityId = htmlspecialchars( protect( $_POST['authority'] ) );
+
 					if( $name && $authorityId )
 					{
 						$userInfo = $user->findByNameOrEmail( $name );

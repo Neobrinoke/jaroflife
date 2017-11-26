@@ -27,9 +27,9 @@ if( isset( $todoId, $taskId ) && is_numeric( $todoId ) && is_numeric( $taskId ) 
 				{
 					if( isset( $_POST['name'], $_POST['priority'], $_POST['description'] ) )
 					{
-						$name = htmlspecialchars( $_POST['name'] );
-						$priority = htmlspecialchars( $_POST['priority'] );
-						$description = htmlspecialchars( $_POST['description'] );
+						$name = htmlspecialchars( protect( $_POST['name'] ) );
+						$priority = htmlspecialchars( protect( $_POST['priority'] ) );
+						$description = htmlspecialchars( protect( $_POST['description'] ) );
 			
 						if( $name && $priority && $description )
 						{

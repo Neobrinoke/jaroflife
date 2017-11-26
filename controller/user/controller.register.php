@@ -56,5 +56,6 @@ if( isset( $_POST['sendRegister'] ) )
 	}
 	else sendMessage( $error ,'error', true );
 }
+
 require_once( 'view/user/view.register.php' );
 ?>

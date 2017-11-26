@@ -16,8 +16,9 @@ if( isset( $_POST['createTodo'] ) )
 
 	if( isset( $_POST['name'], $_POST['description'] ) )
 	{
-		$name = htmlspecialchars( $_POST['name'] );
-		$description = htmlspecialchars( $_POST['description'] );
+		$name = htmlspecialchars( protect( $_POST['name'] ) );
+		$description = htmlspecialchars( protect( $_POST['description'] ) );
+
 		if( $name && $description )
 		{
 			if( strlen( $name ) < 4 ) {
@@ -26,10 +27,6 @@ if( isset( $_POST['createTodo'] ) )
 
 			if( strlen( $description ) < 4 ) {
 				array_push( $error, "La description dois avoir une longueur supérieur à 4" );
-			}
-
-			if( trim( $name ) == null || trim( $description ) == null ) {
-				array_push( $error, "Merci de tous compléter" );
 			}
 		}
 		else array_push( $error, "Merci de tous compléter" );

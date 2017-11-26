@@ -26,8 +26,9 @@ if( isset( $todoId ) && is_numeric( $todoId ) )
 				{
 					if( isset( $_POST['authority_id'], $_POST['userId'] ) )
 					{
-						$authority_id = htmlspecialchars( $_POST['authority_id'] );
-						$targetUserId = htmlspecialchars( $_POST['userId'] );
+						$authority_id = htmlspecialchars( protect( $_POST['authority_id'] ) );
+						$targetUserId = htmlspecialchars( protect( $_POST['userId'] ) );
+
 						if( $authority_id && $targetUserId )
 						{
 							if( $todo->updateUser( $authority_id, $todoId, $targetUserId ) ) {

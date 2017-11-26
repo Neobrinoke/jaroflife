@@ -8,8 +8,8 @@ if( isset( $_POST['sendConnect'] ) )
 
 	if( isset( $_POST['login'], $_POST['password'] ) )
 	{
-		$login = htmlspecialchars( $_POST['login'] );
-		$password = sha1( $_POST['password'] );
+		$login = htmlspecialchars( protect( $_POST['login'] ) );
+		$password = sha1( protect( $_POST['password'] ) );
 		
 		if( $login && $password )
 		{
