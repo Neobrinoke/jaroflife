@@ -32,7 +32,9 @@ if( isset( $todoId ) && is_numeric( $todoId ) )
 					if( $name && $authorityId )
 					{
 						$userInfo = $user->findByNameOrEmail( $name );
-						if( !$userInfo ) {
+						if( $userInfo && $todo->findByIdAndUserId( $todoId, $userInfo->userid ) ) {
+							array_push( $error, 'Utilisateur déjà dans la liste' );
+						} else {
 							array_push( $error, 'Utilisateur introuvable' );
 						}
 					}
