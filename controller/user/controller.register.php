@@ -8,13 +8,13 @@ if( isset( $_POST['sendRegister'] ) )
 
 	if( isset( $_POST['username'], $_POST['login'], $_POST['email'], $_POST['emailconf'], $_POST['password'], $_POST['passwordconf'] ) )
 	{
-		$username = htmlspecialchars( $_POST['username'] );
-		$login = htmlspecialchars( $_POST['login'] );
-		$email = htmlspecialchars( $_POST['email'] );
-		$emailconf = htmlspecialchars( $_POST['emailconf'] );
-		$password = sha1( $_POST['password'] );
-		$passwordconf = sha1( $_POST['passwordconf'] );
-
+		$username = htmlspecialchars( protect( $_POST['username'] ) );
+		$login = htmlspecialchars( protect( $_POST['login'] ) );
+		$email = htmlspecialchars( protect( $_POST['email'] ) );
+		$emailconf = htmlspecialchars( protect( $_POST['emailconf'] ) );
+		$password = sha1( protect( $_POST['password'] ) );
+		$passwordconf = sha1( protect( $_POST['passwordconf'] ) );
+		
 		if( $username && $login && $email && $emailconf && $password && $passwordconf )
 		{
 			$isLoginUse = $user->findByLogin( $login );

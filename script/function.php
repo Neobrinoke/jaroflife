@@ -47,4 +47,8 @@ function sendMessage( $message, $type, $multiple = false )
 		echo '</div>';
 	}
 }
+
+function protect( string $string ) {
+	return trim( hex2bin( str_replace( 'c2a0','20', bin2hex( $string ) ) ) );
+}
 ?>
